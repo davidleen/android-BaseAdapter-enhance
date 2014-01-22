@@ -1,5 +1,5 @@
 
-package com.example.utils;
+package com.example.improvedbaseadapter.utils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
