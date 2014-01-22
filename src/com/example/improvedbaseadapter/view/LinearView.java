@@ -1,13 +1,18 @@
 
-package com.example.view;
+package com.example.improvedbaseadapter.view;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
+ 
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.database.DataSetObserver;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 
@@ -24,11 +29,11 @@ public class LinearView extends LinearLayout {
 
     private OnItemClickListener mOnItemClickListener;
 
-    // @SuppressLint("NewApi")
-    // public LinearView(Context context, AttributeSet attrs, int defStyle) {
-    // super(context, attrs, defStyle);
-    //
-    // }
+//    @SuppressLint("NewApi")
+//    public LinearView(Context context, AttributeSet attrs, int defStyle) {
+//        super(context, attrs, defStyle);
+//
+//    }
 
     public LinearView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -86,7 +91,6 @@ public class LinearView extends LinearLayout {
                 {
                     convertView = getChildAt(i);
                 } else
-
                     convertView = viewPool.size() > 0 ? viewPool.remove(0) : null;
 
                 View newView = mAdapter.getView(i, convertView, this);
@@ -140,6 +144,23 @@ public class LinearView extends LinearLayout {
     }
 
     /**
+     * 返回指定位置上的数据
+     * 
+     * @param position
+     * @return
+     */
+    public Object getItemAtPosition(int position)
+    {
+        if (position < 0)
+            return null;
+        if (mAdapter == null)
+            return null;
+        if (mAdapter.getCount() <= position)
+            return null;
+        return mAdapter.getItem(position);
+    }
+
+    /**
      * 设置行点击事件。
      * 
      * @param listener
@@ -152,6 +173,6 @@ public class LinearView extends LinearLayout {
     public interface OnItemClickListener
     {
 
-        public void onItemClick(LinearLayout parent, View v, int position, long id);
+        public void onItemClick(LinearView parent, View v, int position, long id);
     }
 }

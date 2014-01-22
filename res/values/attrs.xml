@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="TipTextView">
+        <attr name="text" format="string" />
+        <attr name="textPosition">
+            <enum name="left" value="-1" />
+            <enum name="middle" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>
