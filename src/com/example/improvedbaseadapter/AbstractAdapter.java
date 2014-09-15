@@ -107,13 +107,14 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 		if (convertView == null) {
 			convertView = View.inflate(context, getItemViewLayout(type), null);
 			holder = getItemViewHolder(type);
+			ViewInjectorByReflect.injectView(holder, convertView);
 			convertView.setTag(holder);
 
 		} else {
 			holder = (Bindable<D>) convertView.getTag();
 
 		}
-		ViewInjectorByReflect.injectView(holder, convertView);
+	
 		D data = getItem(position);
 
 		holder.bindData(data, position);
