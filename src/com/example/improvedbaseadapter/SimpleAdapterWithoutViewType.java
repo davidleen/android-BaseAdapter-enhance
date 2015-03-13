@@ -24,18 +24,11 @@ public class SimpleAdapterWithoutViewType extends AbstractAdapter<Card> {
 
 	}
 
-	@Override
-	protected int getItemViewLayout(int itemViewType) {
 
-		return R.layout.list_item_number_type;
-
-	}
 
 	@Override
-	protected Bindable<Card> getItemViewHolder(int itemViewType) {
-
-		return new NumberTypeBinder();
-
+	protected Class<?  > getItemViewHolder(int itemViewType) {
+		return   NumberTypeBinder.class;
 	}
 
 	/**
@@ -44,15 +37,17 @@ public class SimpleAdapterWithoutViewType extends AbstractAdapter<Card> {
 	 * @author davidleen29
 	 * @创建时间 2013年11月14日
 	 */
+   @ResId(R.layout.list_item_number_type)
 	class NumberTypeBinder implements Bindable<Card> {
 		//here  use reflect ,
 		//make this memeber name with the same name to the viewId defined in the item layout
 		// like:   android:id="@+id/cardType"
 		// optional choice: use roboguice do the inject work with its annotation.
+		@ResId(R.id.cardType)
 		TextView cardType;
 
 		@Override
-		public void bindData(Card data, int position) {
+		public void bindData(AbstractAdapter<Card> adapter,Card data, int position) {
 			// here do all your bind obj
 			cardType.setText(data.toString());
 		}

@@ -57,8 +57,6 @@ public class ArrayUtils {
      * 封装 由数组转换成 列表
      * 
      * @param <T>
-     * @param datas
-     * @param comparator
      */
 
     public static <T> List<T> changeArrayToList(T[] array) {
@@ -79,8 +77,7 @@ public class ArrayUtils {
      * 封装 由列表转换成数组
      * 
      * @param <T>
-     * @param datas
-     * @param comparator
+
      */
 
     public static <T> T[]    changeArrayToList(List<T> list) {

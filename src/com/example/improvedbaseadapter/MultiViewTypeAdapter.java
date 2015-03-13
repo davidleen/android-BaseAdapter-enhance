@@ -23,30 +23,15 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 
 	}
 
-	@Override
-	protected int getItemViewLayout(int itemViewType) {
 
-		switch (itemViewType) {
-		case 0:
-			return R.layout.list_item_number_type;
-
-		default:
-			return R.layout.list_item_member_type;
-		}
-	}
 
 	@Override
-	protected Bindable<Card> getItemViewHolder(int itemViewType) {
-		switch (itemViewType) {
-		case 0:
-			return new NumberTypeBinder();
+	protected Class<?  > getItemViewHolder(int itemViewType) {
 
-		default:
-			return new MemberTypeBinder();
-		}
-
+		return	holderTypes[itemViewType];
 	}
 
+	private Class<?>[] holderTypes=new Class<?>[]{NumberTypeBinder.class,MemberTypeBinder.class} ;
 	/**
 	 * get viewType of the position
 	 * depend on your bussiness;
@@ -64,8 +49,7 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 */
 	@Override
 	public int getViewTypeCount() {
-		//
-		return 2;
+		return holderTypes.length;
 	}
 
 	/**
@@ -74,11 +58,14 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 * @author davidleen29
 	 * @创建时间 2013年11月14日
 	 */
+	@ResId(R.layout.list_item_number_type)
 	class NumberTypeBinder implements Bindable<Card> {
+
+		@ResId(R.id.cardType)
 		TextView cardType;
 
 		@Override
-		public void bindData(Card data, int position) {
+		public void bindData(AbstractAdapter<Card> adapter,Card data, int position) {
 			cardType.setText(data.toString());
 		}
 
@@ -90,11 +77,13 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 * @author davidleen29
 	 * @创建时间 2013年11月14日
 	 */
+	@ResId(R.layout.list_item_member_type)
 	class MemberTypeBinder implements Bindable<Card> {
+		@ResId(R.id.cardType)
 		TextView cardType;
 
 		@Override
-		public void bindData(Card data, int position) {
+		public void bindData(AbstractAdapter<Card> adapter,Card data, int position) {
 			cardType.setText(data.toString());
 		}
 

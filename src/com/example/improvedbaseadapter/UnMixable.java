@@ -14,7 +14,7 @@ package com.example.improvedbaseadapter;
  * 实现该接口的任何类， 其成员名称（变量名称 TextView tv_name） 必须和android 界面元素标识(R.id.tv_name)一致
  * 方可使用
  * 
- * @see ViewInjectorByReflect 配合使用
+ * @see ViewUtil 配合使用
  * 
  * @author davidleen29
  * @创建时间 2013年11月1日

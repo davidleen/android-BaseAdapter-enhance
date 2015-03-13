@@ -80,14 +80,6 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 		return position;
 	}
 
-	/**
-	 * get the itemlayout base on viewType;
-	 * 获取对应itemType 的布局文件
-	 * 
-	 * @param itemViewType
-	 * @return
-	 */
-	protected abstract int getItemViewLayout(int itemViewType);
 
 	/**
 	 * get the binder base on viewType;
@@ -96,7 +88,7 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 	 * @param itemViewType
 	 * @return
 	 */
-	protected abstract Bindable<D> getItemViewHolder(int itemViewType);
+	protected abstract Class<?  > getItemViewHolder(int itemViewType);
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -105,19 +97,27 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 
 		Bindable<D> holder;
 		if (convertView == null) {
-			convertView = View.inflate(context, getItemViewLayout(type), null);
-			holder = getItemViewHolder(type);
-			ViewInjectorByReflect.injectView(holder, convertView);
-			convertView.setTag(holder);
 
-		} else {
-			holder = (Bindable<D>) convertView.getTag();
 
+			UnMixable obj = null;
+			Class<?> unMixableClass=getItemViewHolder(type);
+			try {
+				obj = (UnMixable) unMixableClass.newInstance();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+				throw new RuntimeException("class :"+unMixableClass+" must have a empty argue constructor or no constructor" );
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+				throw new RuntimeException("class :"+unMixableClass+" must have a public   constructor" );
+			}
+
+			convertView= ViewUtil.getViewByAnnotate(obj, context);
+			convertView.setTag(obj);
 		}
-	
+		holder = (Bindable<D>) convertView.getTag();
 		D data = getItem(position);
 
-		holder.bindData(data, position);
+		holder.bindData(this,data, position);
 		return convertView;
 
 	}
@@ -130,6 +130,8 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 	 * @创建时间 2013年11月13日
 	 * @param <D>
 	 */
+
+
 	public interface Bindable<D> extends UnMixable {
 		/**
 		 * bind the data message
@@ -139,7 +141,7 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 		 * @param position
 		 *            the position of data in the datasArray
 		 */
-		public abstract void bindData(D data, int position);
+		public abstract void bindData(AbstractAdapter<D> adapter,D data, int position);
 
 	}
 

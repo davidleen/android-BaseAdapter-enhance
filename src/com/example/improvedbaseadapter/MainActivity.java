@@ -22,7 +22,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		ViewHolder holder = new ViewHolder();
-		ViewInjectorByReflect.injectView(holder, getWindow().getDecorView());
+		ViewUtil.injectByFieldAnnotate(holder, getWindow().getDecorView());
 
 		// generate multiViewType datas
 		List<Card> datas = new ArrayList<Card>();
