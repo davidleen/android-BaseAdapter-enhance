@@ -59,10 +59,13 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 * @创建时间 2013年11月14日
 	 */
 	@ResId(R.layout.list_item_number_type)
-	class NumberTypeBinder implements Bindable<Card> {
+	public static class NumberTypeBinder implements Bindable<Card> {
 
 		@ResId(R.id.cardType)
 		TextView cardType;
+
+		public NumberTypeBinder() {
+		}
 
 		@Override
 		public void bindData(AbstractAdapter<Card> adapter,Card data, int position) {
@@ -78,7 +81,12 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 * @创建时间 2013年11月14日
 	 */
 	@ResId(R.layout.list_item_member_type)
-	class MemberTypeBinder implements Bindable<Card> {
+	public static class MemberTypeBinder implements Bindable<Card> {
+
+
+		public MemberTypeBinder() {
+		}
+
 		@ResId(R.id.cardType)
 		TextView cardType;
 

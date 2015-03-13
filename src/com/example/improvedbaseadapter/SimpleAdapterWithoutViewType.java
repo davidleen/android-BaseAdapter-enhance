@@ -38,7 +38,12 @@ public class SimpleAdapterWithoutViewType extends AbstractAdapter<Card> {
 	 * @创建时间 2013年11月14日
 	 */
    @ResId(R.layout.list_item_number_type)
-	class NumberTypeBinder implements Bindable<Card> {
+
+	public static class NumberTypeBinder implements Bindable<Card> {
+
+		public NumberTypeBinder() {
+		}
+
 		//here  use reflect ,
 		//make this memeber name with the same name to the viewId defined in the item layout
 		// like:   android:id="@+id/cardType"

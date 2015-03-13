@@ -1,5 +1,6 @@
 package com.example.improvedbaseadapter;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,7 +89,7 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 	 * @param itemViewType
 	 * @return
 	 */
-	protected abstract Class<?  > getItemViewHolder(int itemViewType);
+	protected abstract Class<?> getItemViewHolder(int itemViewType);
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -102,10 +103,12 @@ public abstract class AbstractAdapter<D> extends BaseAdapter {
 			UnMixable obj = null;
 			Class<?> unMixableClass=getItemViewHolder(type);
 			try {
-				obj = (UnMixable) unMixableClass.newInstance();
+
+					obj = (UnMixable) unMixableClass.newInstance();
+
 			} catch (InstantiationException e) {
 				e.printStackTrace();
-				throw new RuntimeException("class :"+unMixableClass+" must have a empty argue constructor or no constructor" );
+				throw new RuntimeException("class :"+unMixableClass+" must have a empty argue constructor  " );
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 				throw new RuntimeException("class :"+unMixableClass+" must have a public   constructor" );

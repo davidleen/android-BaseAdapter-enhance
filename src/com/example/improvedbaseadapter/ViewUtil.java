@@ -77,6 +77,12 @@ public class ViewUtil {
 	}
 
 
+	/**
+	 * 注射变量
+	 * @param obj
+	 * @param aClass
+	 * @param v
+	 */
 	public  static void injectByFieldAnnotate(Object obj,Class<?> aClass,View v)
 	{
 		while (aClass != null) {// 循环往上查询成员变量

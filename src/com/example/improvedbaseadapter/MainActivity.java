@@ -12,7 +12,10 @@ public class MainActivity extends Activity {
 
 	private class ViewHolder implements UnMixable {
 
+
+		@ResId(R.id.multiViewType)
 		ListView multiViewType;
+		@ResId(R.id.simpleViewType)
 		ListView simpleViewType;
 
 	}
