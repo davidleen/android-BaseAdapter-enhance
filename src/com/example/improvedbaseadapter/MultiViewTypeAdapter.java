@@ -26,12 +26,20 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 
 
 	@Override
-	protected Class<?  > getItemViewHolder(int itemViewType) {
+	protected Bindable createViewHolder(int itemViewType) {
 
-		return	holderTypes[itemViewType];
+
+		switch (itemViewType)
+		{
+			case 0: return new NumberTypeBinder();
+			default:return new MemberTypeBinder();
+		}
+
+
+
 	}
 
-	private Class<?>[] holderTypes=new Class<?>[]{NumberTypeBinder.class,MemberTypeBinder.class} ;
+
 	/**
 	 * get viewType of the position
 	 * depend on your bussiness;
@@ -49,7 +57,7 @@ public class MultiViewTypeAdapter extends AbstractAdapter<Card> {
 	 */
 	@Override
 	public int getViewTypeCount() {
-		return holderTypes.length;
+		return 2;
 	}
 
 	/**

@@ -27,8 +27,8 @@ public class SimpleAdapterWithoutViewType extends AbstractAdapter<Card> {
 
 
 	@Override
-	protected Class<?  > getItemViewHolder(int itemViewType) {
-		return   NumberTypeBinder.class;
+	protected UnMixable createViewHolder(int itemViewType) {
+		return new  NumberTypeBinder() ;
 	}
 
 	/**
