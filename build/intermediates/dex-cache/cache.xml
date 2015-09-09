@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="E:\projects\android-BaseAdapter-enhance\app\build\intermediates\exploded-aar\com.giants3.android\annotatableadapter\1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="488204c2a1331a74ce2812c0bf7a1ae8daa9b118">
+        <dex dex="E:\projects\android-BaseAdapter-enhance\app\build\intermediates\pre-dexed\release\classes-84e41194e1c383b9a5c5f90d25e2fa6894c13987.jar" />
+    </item>
+
+</items>

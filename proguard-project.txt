@@ -18,3 +18,5 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+#-keep class * implements com.giants3.android.annotatableadapter.UnMixable
+#-keep class * implements com.giants3.android.annotatableadapter.UnMixable
