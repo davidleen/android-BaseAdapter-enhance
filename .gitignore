@@ -4,3 +4,4 @@ app/build/
 .idea/
 local.properties
 gradlew.bat
+build/
