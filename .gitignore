@@ -5,3 +5,4 @@ app/build/
 local.properties
 gradlew.bat
 build/
+app/app.iml

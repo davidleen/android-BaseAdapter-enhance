@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Random;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.DownloadManager;
+import android.app.KeyguardManager;
 import android.os.Bundle;
 import android.widget.ListView;
 
@@ -12,8 +15,12 @@ import com.giants3.android.annotatableadapter.ResId;
 import com.giants3.android.annotatableadapter.UnMixable;
 import com.giants3.android.annotatableadapter.ViewUtil;
 
+import javax.inject.Inject;
 
-public class MainActivity extends Activity {
+import roboguice.activity.RoboFragmentActivity;
+
+
+public class MainActivity extends RoboFragmentActivity {
 
 	private class ViewHolder implements UnMixable {
 
@@ -23,11 +30,20 @@ public class MainActivity extends Activity {
 		@ResId(R.id.simpleViewType)
 		ListView simpleViewType;
 
+		@Inject
+		ActivityManager activityManager;
+		@Inject
+		KeyguardManager keyguardManager;
+
+
+		@Inject
+		DownloadManager downloadManager;
 	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+
 		setContentView(R.layout.activity_main);
 		ViewHolder holder = new ViewHolder();
 		ViewUtil.injectByFieldAnnotate(holder, getWindow().getDecorView());
