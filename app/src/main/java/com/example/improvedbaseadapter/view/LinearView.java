@@ -14,14 +14,16 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
+
+
+import copy.android.support.v7.LinearLayoutCompat;
 
 /**
  * 列表 不提供滚动功能 完全展示的listview 仅适用于 列表项目不多，需要嵌套展示的列表（即外围是scrollView 类似的滚动控件。）
  * 
  * @author davidleen29
  */
-public class LinearView extends LinearLayout {
+public class LinearView extends LinearLayoutCompat {
 
     private List<View> viewPool = new ArrayList<View>();
 
